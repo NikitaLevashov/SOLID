@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace SOLID.Open_Closed_Principle
 {
-    class ItProfessional // класс ИТ-специалист
+    class SeniorEmployee // класс ИТ-специалист
     {
         public string Name { get; set; }
 
-        public ItProfessional(string name)
+        public SeniorEmployee(string name)
         {
             this.Name = name;
         }

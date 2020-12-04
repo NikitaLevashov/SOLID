@@ -1,14 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using SOLID.Liskov_Substitution_Principle;
 using SOLID.Open_Closed_Principle;
-using SOLID.Services;
 
 namespace SOLID
 {
@@ -16,13 +9,24 @@ namespace SOLID
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            // передаем зависимость класса Tester от IWork
-            services.AddTransient<IWork, Tester>(); 
-            services.AddSingleton<WorkService>();
+            // ненужное закомментить
+            // передаем зависимость класса Tester от IWork (Open Closed Principle)
+            services.AddTransient<IWork, Tester>();
+            services.AddSingleton<Open_Closed_Principle.WorkService>();
+
+            // передаем зависимость класса MiddleEmployee от IWorking (Liskov Substitution Principle)
+            services.AddSingleton<IWorking, MiddleEmployee>();
+            services.AddSingleton<Liskov_Substitution_Principle.WorkService>();
+
+
         }
-        public void Configure(IApplicationBuilder app) //WorkMiddleware встраивается в конвейер обработки запроса
+        public void Configure(IApplicationBuilder app) 
         {
-            app.UseMiddleware<WorkMiddleware>();
+            //WorkMiddleware встраивается в конвейер обработки запроса (Open Closed Principle)
+            //app.UseMiddleware<Open_Closed_Principle.WorkMiddleware>();
+
+            //WorkMiddleware встраивается в конвейер обработки запроса (Liskov Substitution Principle)
+            app.UseMiddleware<Liskov_Substitution_Principle.WorkMiddleware>();
         }
     }
 }
