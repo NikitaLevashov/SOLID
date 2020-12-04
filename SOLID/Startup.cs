@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SOLID.Open_Closed_Principle;
 using SOLID.Services;
 
 namespace SOLID
@@ -15,12 +16,13 @@ namespace SOLID
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<ICounter, RandomCounter>();
-            services.AddSingleton<CounterService>();
+            // передаем зависимость класса Tester от IWork
+            services.AddTransient<IWork, Tester>(); 
+            services.AddSingleton<WorkService>();
         }
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app) //WorkMiddleware встраивается в конвейер обработки запроса
         {
-            app.UseMiddleware<CounterMiddleware>();
+            app.UseMiddleware<WorkMiddleware>();
         }
     }
 }
