@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SOLID.The_Interface_Segregation_Principle
+namespace SOLID.MessageMiddleware
 {
     interface IInternet
     {
         void Internet();
     }
+
+
 }

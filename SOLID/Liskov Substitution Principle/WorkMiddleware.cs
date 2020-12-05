@@ -8,10 +8,10 @@ namespace SOLID.Liskov_Substitution_Principle
 {
     // Класс для работы с сервисами
     // Для получения зависимостей здесь используется метод InvokeAsync, в котором передаются две зависимости IWorking и WorkService
-    public class WorkMiddleware
+    public class MessageMiddleware
     {
         private readonly RequestDelegate _next;
-        public WorkMiddleware(RequestDelegate next)
+        public MessageMiddleware(RequestDelegate next)
         {
             _next = next;
         }
